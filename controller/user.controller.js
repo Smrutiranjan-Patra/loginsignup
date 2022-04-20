@@ -100,4 +100,20 @@ const getallusers = async (req, res) => {
     }
 };
 
-module.exports = { UserRegistration, Userlogin, getallusers };
+const generatenewaccessToken = async (req, res) => {
+    try {
+        const token = req.headers['authorization'].split(' ');
+        if (token[1] === result.refreshToken) {
+            let user = await User.findOne({ where: { username: req.body.username } });
+            const accesstoken = generateaccessToken(user);
+            result.accesstoken = accesstoken;
+            return res.status(200).json(accesstoken);
+        }
+        res.status(500).json({ status: "failed" })
+    }
+    catch (err) {
+        return res.status(500).json({ "status": "Invalid Token" });
+    }
+}
+
+module.exports = { UserRegistration, Userlogin, getallusers, generatenewaccessToken };
