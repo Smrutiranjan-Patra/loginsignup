@@ -13,6 +13,6 @@ The default Url is http://localhost:2022
 
 All Routes
 
-- Get All Users = http://localhost:2022/api/users
+- Get All Users = http://localhost:2022/api/user
 - register = http://localhost:2022/api/register
 - login = http://localhost:2022/api/login
